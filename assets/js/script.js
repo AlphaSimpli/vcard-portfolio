@@ -161,6 +161,8 @@ for (let i = 0; i < navigationLinks.length; i++) {
 const avatarBox = document.getElementById("avatarBox");
 const avatarImg = document.getElementById("avatarImg");
 
+console.log("Avatar elements found:", { avatarBox, avatarImg });
+
 if (avatarBox && avatarImg) {
   const resetAvatar = () => {
     avatarImg.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
@@ -180,11 +182,20 @@ if (avatarBox && avatarImg) {
     const rotateX = -y * 20;
     const rotateY = x * 20;
 
+    console.log("Mousemove detected - rotateX:", rotateX, "rotateY:", rotateY);
+    
     avatarImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
     avatarImg.style.filter = `drop-shadow(${x * -10}px ${y * -10 + 20}px 30px rgba(0,0,0,0.2))`;
   });
 
-  avatarBox.addEventListener("mouseleave", resetAvatar);
+  avatarBox.addEventListener("mouseenter", () => {
+    console.log("Mouse entered avatar");
+  });
+
+  avatarBox.addEventListener("mouseleave", () => {
+    console.log("Mouse left avatar");
+    resetAvatar();
+  });
 
   avatarBox.addEventListener("touchmove", (e) => {
     e.preventDefault();
@@ -196,8 +207,13 @@ if (avatarBox && avatarImg) {
     const rotateX = -y * 25;
     const rotateY = x * 25;
 
+    console.log("Touch move detected - rotateX:", rotateX, "rotateY:", rotateY);
+    
     avatarImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
   }, { passive: false });
 
-  avatarBox.addEventListener("touchend", resetAvatar);
+  avatarBox.addEventListener("touchend", () => {
+    console.log("Touch ended");
+    resetAvatar();
+  });
 }
