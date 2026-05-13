@@ -347,18 +347,24 @@ main {
   transform-style: preserve-3d;
   cursor: pointer;
   perspective: 1000px;
+  overflow: hidden;
 }
 
 .avatar-container .avatar-image {
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.1s ease, filter 0.3s ease;
   transform-origin: center center;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+  backface-visibility: hidden;
+  will-change: transform, filter;
 }
 
 .avatar-box.avatar-container img {
-  width: 100%;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
 }
 
 @keyframes float {
