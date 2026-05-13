@@ -350,8 +350,8 @@ main {
   overflow: hidden;
 }
 
-.avatar-container .avatar-image {
-  width: 100% !important;
+.avatar-container img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.1s ease, filter 0.3s ease;
@@ -361,32 +361,22 @@ main {
   will-change: transform, filter;
 }
 
-.avatar-box.avatar-container img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-}
-
 @keyframes float {
-  0% {
-    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
   }
   50% {
     transform: translateY(-15px) rotateX(2deg) rotateY(-2deg);
-  }
-  100% {
-    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
   }
 }
 
 .glow {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
+  margin: auto;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
-  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
   border-radius: 50%;
   z-index: -1;
   opacity: 0.65;

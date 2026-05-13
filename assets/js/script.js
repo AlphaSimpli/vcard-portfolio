@@ -161,41 +161,42 @@ for (let i = 0; i < navigationLinks.length; i++) {
 const avatarBox = document.getElementById("avatarBox");
 const avatarImg = document.getElementById("avatarImg");
 
-console.log("Avatar elements found:", { avatarBox, avatarImg });
-
 if (avatarBox && avatarImg) {
-  const resetAvatar = () => {
-    avatarImg.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-    avatarImg.style.filter = `drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15))`;
-    avatarImg.style.transition = 'transform 0.5s ease-out, filter 0.5s ease-out';
+  let transitionTimeout;
 
-    setTimeout(() => {
+  const applyTransform = (rotateX, rotateY, scale = 1) => {
+    avatarImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, 1)`;
+  };
+
+  const applyFilter = (x, y) => {
+    avatarImg.style.filter = `drop-shadow(${x * -10}px ${y * -10 + 20}px 30px rgba(0, 0, 0, 0.2))`;
+  };
+
+  const calculateRotation = (e, multiplier = 20) => {
+    const rect = avatarBox.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    return { x, y, rotateX: -y * multiplier, rotateY: x * multiplier };
+  };
+
+  const resetAvatar = () => {
+    avatarImg.style.transition = 'transform 0.5s ease-out, filter 0.5s ease-out';
+    applyTransform(0, 0, 1);
+    avatarImg.style.filter = `drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15))`;
+
+    clearTimeout(transitionTimeout);
+    transitionTimeout = setTimeout(() => {
       avatarImg.style.transition = 'transform 0.1s ease, filter 0.3s ease';
     }, 500);
   };
 
   avatarBox.addEventListener("mousemove", (e) => {
-    const rect = avatarBox.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-
-    const rotateX = -y * 20;
-    const rotateY = x * 20;
-
-    console.log("Mousemove detected - rotateX:", rotateX, "rotateY:", rotateY);
-    
-    avatarImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-    avatarImg.style.filter = `drop-shadow(${x * -10}px ${y * -10 + 20}px 30px rgba(0,0,0,0.2))`;
+    const { x, y, rotateX, rotateY } = calculateRotation(e);
+    applyTransform(rotateX, rotateY, 1.05);
+    applyFilter(x, y);
   });
 
-  avatarBox.addEventListener("mouseenter", () => {
-    console.log("Mouse entered avatar");
-  });
-
-  avatarBox.addEventListener("mouseleave", () => {
-    console.log("Mouse left avatar");
-    resetAvatar();
-  });
+  avatarBox.addEventListener("mouseleave", resetAvatar);
 
   avatarBox.addEventListener("touchmove", (e) => {
     e.preventDefault();
@@ -203,17 +204,10 @@ if (avatarBox && avatarImg) {
     const rect = avatarBox.getBoundingClientRect();
     const x = (touch.clientX - rect.left - rect.width / 2) / (rect.width / 2);
     const y = (touch.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-
     const rotateX = -y * 25;
     const rotateY = x * 25;
-
-    console.log("Touch move detected - rotateX:", rotateX, "rotateY:", rotateY);
-    
-    avatarImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    applyTransform(rotateX, rotateY, 1.05);
   }, { passive: false });
 
-  avatarBox.addEventListener("touchend", () => {
-    console.log("Touch ended");
-    resetAvatar();
-  });
+  avatarBox.addEventListener("touchend", resetAvatar);
 }
