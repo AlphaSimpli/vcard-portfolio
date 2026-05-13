@@ -338,8 +338,8 @@ main {
 
 .avatar-container {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1396,9 +1396,9 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .avatar-box { border-radius: 30px; }
 
-  .avatar-box img { width: 100px; }
+  .avatar-box img { width: 130px; }
 
-  .avatar-container { width: 100px; height: 100px; }
+  .avatar-container { width: 130px; height: 130px; }
 
   .info-content .name { margin-bottom: 15px; }
 
@@ -1894,9 +1894,9 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { flex-direction: column; }
 
-  .avatar-box img { width: 120px; }
+  .avatar-box img { width: 160px; }
 
-  .avatar-container { width: 120px; height: 120px; }
+  .avatar-container { width: 160px; height: 160px; }
 
   .info-content .name {
     white-space: nowrap;
