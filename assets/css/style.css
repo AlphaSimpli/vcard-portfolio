@@ -338,8 +338,8 @@ main {
 
 .avatar-container {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
