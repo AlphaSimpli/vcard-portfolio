@@ -344,9 +344,7 @@ main {
   justify-content: center;
   align-items: center;
   animation: float 6s ease-in-out infinite;
-  transform-style: preserve-3d;
   cursor: pointer;
-  perspective: 1000px;
   overflow: hidden;
 }
 
@@ -357,16 +355,15 @@ main {
   transition: transform 0.1s ease, filter 0.3s ease;
   transform-origin: center center;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
-  backface-visibility: hidden;
   will-change: transform, filter;
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-15px) rotateX(2deg) rotateY(-2deg);
+    transform: translateY(-15px);
   }
 }
 
