@@ -338,8 +338,8 @@ main {
 
 .avatar-container {
   position: relative;
-  width: 110px;
-  height: 110px;
+  width: 140px;
+  height: 140px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -351,8 +351,8 @@ main {
 }
 
 .avatar-container img {
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.1s ease, filter 0.3s ease;
   transform-origin: center center;
