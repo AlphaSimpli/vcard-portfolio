@@ -1104,17 +1104,25 @@
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form action="#" class="form" data-form>
+          <div data-fs-success style="display: none; color: green; margin-bottom: 1rem;">
+            <p>Thanks for getting in touch! I'll respond as soon as possible.</p>
+          </div>
+          <div data-fs-error style="display: none; color: red; margin-bottom: 1rem;"></div>
+
+          <form id="contact-form" class="form" data-form>
 
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input data-fs-field>
+              <span data-fs-error="fullname" style="color: red; font-size: 0.875rem;"></span>
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input data-fs-field>
+              <span data-fs-error="email" style="color: red; font-size: 0.875rem;"></span>
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input data-fs-field></textarea>
+            <span data-fs-error="message" style="color: red; font-size: 0.875rem;"></span>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
+            <button class="form-btn" type="submit" disabled data-form-btn data-fs-submit-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
@@ -1144,6 +1152,15 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!--
+    - Formspree initialization
+  -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'xwvyjwrl' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 
