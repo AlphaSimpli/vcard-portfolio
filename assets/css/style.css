@@ -321,7 +321,13 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active {
+  /* allow the sidebar to expand to the viewport height on small screens
+     and enable internal scrolling when content exceeds the visible area */
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
 .sidebar-info {
   position: relative;
