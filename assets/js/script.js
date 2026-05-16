@@ -157,14 +157,12 @@ for (let i = 0; i < navigationLinks.length; i++) {
             musicPlayer.classList.add("active");
           }
 
-          if (musicPlayer) {
-            const iframe = musicPlayer.querySelector("iframe");
-            if (iframe) {
-              const url = new URL(iframe.src);
-              if (url.searchParams.get("autoplay") !== "1") {
-                url.searchParams.set("autoplay", "1");
-                iframe.src = url.toString();
-              }
+          const iframe = initializeMusicPlayer();
+          if (iframe) {
+            const url = new URL(iframe.src);
+            if (url.searchParams.get("autoplay") !== "1") {
+              url.searchParams.set("autoplay", "1");
+              iframe.src = url.toString();
             }
           }
         }
@@ -232,9 +230,41 @@ if (avatarBox && avatarImg) {
 }
 
 
+const initializeMusicPlayer = function () {
+  const musicPlayer = document.querySelector("[data-music-player]");
+  if (!musicPlayer) return null;
+
+  const src = musicPlayer.dataset.musicSrc;
+  if (!src) return null;
+
+  let iframe = musicPlayer.querySelector("iframe");
+  if (!iframe) {
+    iframe = document.createElement("iframe");
+    iframe.setAttribute("data-testid", "embed-iframe");
+    iframe.style.borderRadius = "12px";
+    iframe.width = "100%";
+    iframe.height = "352";
+    iframe.frameBorder = "0";
+    iframe.allowFullscreen = true;
+    iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+    iframe.loading = "lazy";
+    musicPlayer.appendChild(iframe);
+  }
+
+  if (!iframe.src) {
+    iframe.src = src;
+  }
+
+  return iframe;
+};
+
 // music player toggle functionality
 const musicBtn = document.querySelector("[data-music-btn]");
 const musicPlayer = document.querySelector("[data-music-player]");
+
+if (musicPlayer) {
+  initializeMusicPlayer();
+}
 
 if (musicBtn && musicPlayer) {
   musicBtn.addEventListener("click", function () {
