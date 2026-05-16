@@ -156,6 +156,17 @@ for (let i = 0; i < navigationLinks.length; i++) {
           if (musicPlayer && !musicPlayer.classList.contains("active")) {
             musicPlayer.classList.add("active");
           }
+
+          if (musicPlayer) {
+            const iframe = musicPlayer.querySelector("iframe");
+            if (iframe) {
+              const url = new URL(iframe.src);
+              if (url.searchParams.get("autoplay") !== "1") {
+                url.searchParams.set("autoplay", "1");
+                iframe.src = url.toString();
+              }
+            }
+          }
         }
       } else {
         pages[i].classList.remove("active");
