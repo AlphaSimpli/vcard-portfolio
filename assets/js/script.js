@@ -149,6 +149,14 @@ for (let i = 0; i < navigationLinks.length; i++) {
         pages[i].classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
+        
+        // auto-play music when portfolio page is opened
+        if (pages[i].dataset.page === "portfolio") {
+          const musicPlayer = document.querySelector("[data-music-player]");
+          if (musicPlayer && !musicPlayer.classList.contains("active")) {
+            musicPlayer.classList.add("active");
+          }
+        }
       } else {
         pages[i].classList.remove("active");
         navigationLinks[i].classList.remove("active");
