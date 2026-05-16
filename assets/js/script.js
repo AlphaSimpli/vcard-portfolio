@@ -211,3 +211,14 @@ if (avatarBox && avatarImg) {
 
   avatarBox.addEventListener("touchend", resetAvatar);
 }
+
+
+// music player toggle functionality
+const musicBtn = document.querySelector("[data-music-btn]");
+const musicPlayer = document.querySelector("[data-music-player]");
+
+if (musicBtn && musicPlayer) {
+  musicBtn.addEventListener("click", function () {
+    musicPlayer.classList.toggle("active");
+  });
+}

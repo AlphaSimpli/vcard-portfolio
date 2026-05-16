@@ -1280,6 +1280,62 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 
 /*-----------------------------------*\
+  #MUSIC PLAYER
+\*-----------------------------------*/
+
+.music-toggle-wrapper {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--jet);
+}
+
+.music-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: var(--fw-400);
+}
+
+.music-toggle-btn:hover {
+  color: var(--light-gray);
+  background: hsla(0, 0%, 84%, 0.1);
+}
+
+.music-toggle-btn ion-icon {
+  font-size: 18px;
+}
+
+.music-player-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+  margin-top: 0;
+}
+
+.music-player-container.active {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.music-player-container iframe {
+  display: block;
+  border-radius: 12px;
+}
+
+
+
+
+/*-----------------------------------*\
   #RESPONSIVE
 \*-----------------------------------*/
 
@@ -1936,5 +1992,15 @@ textarea.form-input::-webkit-resizer { display: none; }
 	 */
 
   .timeline-text { max-width: 700px; }
+
+  /**
+   * MUSIC PLAYER
+   */
+
+  .music-toggle-wrapper {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--jet);
+  }
 
 }
